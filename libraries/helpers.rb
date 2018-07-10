@@ -206,7 +206,7 @@ module PostgresqlCookbook
 
     # determine the appropriate DB init command to run based on RHEL/Fedora/Amazon release
     # initdb defaults to the execution environment.
-    # https://www.postgresql.org/docs/9.5/static/locale.html
+    # https://www.postgresql.org/docs/10/static/locale.html
     def rhel_init_db_command(new_resource)
       cmd = if platform_family?('amazon')
               '/usr/bin/initdb'

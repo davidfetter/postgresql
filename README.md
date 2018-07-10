@@ -46,7 +46,7 @@ This resource installs PostgreSQL client packages.
 
 Name                | Types             | Description                                                   | Default                                   | Required?
 ------------------- | ----------------- | ------------------------------------------------------------- | ----------------------------------------- | ---------
-`version`           | String            | Version of PostgreSQL to install                              | '9.6'                                     | no
+`version`           | String            | Version of PostgreSQL to install                              | '10'                                      | no
 `setup_repo`        | Boolean           | Define if you want to add the PostgreSQL repo                 | true                                      | no
 `hba_file`          | String            |                                                               | `#{conf_dir}/main/pg_hba.conf`            | no
 `ident_file`        | String            |                                                               | `#{conf_dir}/main/pg_ident.conf`          | no
@@ -56,11 +56,11 @@ Name                | Types             | Description                           
 
 #### Examples
 
-To install '9.5' version:
+To install '9.6' version:
 
 ```
 postgresql_client_install 'My Postgresql Client install' do
-  version '9.5'
+  version '9.6'
 end
 ```
 
@@ -77,7 +77,7 @@ This resource installs PostgreSQL client and server packages.
 
 Name                | Types           | Description                                   | Default                                            | Required?
 ------------------- | --------------- | --------------------------------------------- | -------------------------------------------------- | ---------
-`version`           | String          | Version of PostgreSQL to install              | '9.6'                                              | no
+`version`           | String          | Version of PostgreSQL to install              | '10'                                               | no
 `setup_repo`        | Boolean         | Define if you want to add the PostgreSQL repo | true                                               | no
 `hba_file`          | String          | Path of pg_hba.conf file                      | `<default_os_path>/pg_hba.conf'`                   | no
 `ident_file`        | String          | Path of pg_ident.conf file                    | `<default_os_path>/pg_ident.conf`                  | no
@@ -94,7 +94,7 @@ postgresql_server_install 'My Postgresql Server install' do
   action :install
 end
 
-postgresql_server_install 'Setup my postgresql 9.5 server' do
+postgresql_server_install 'Setup my postgresql 10 server' do
   password 'MyP4ssw0d'
   port 5433
   action :create
@@ -113,7 +113,7 @@ This resource manages postgresql.conf configuration file.
 
 Name                   | Types   | Description                             | Default                                             | Required?
 ---------------------- | ------- | --------------------------------------- | --------------------------------------------------- | ---------
-`version`              | String  | Version of PostgreSQL to install        | '9.6'                                               | no
+`version`              | String  | Version of PostgreSQL to install        | '10'                                                | no
 `data_directory`       | String  | Path of postgresql data directory       | `<default_os_data_path>`                            | no
 `hba_file`             | String  | Path of pg_hba.conf file                | `<default_os_conf_path>/pg_hba.conf`                | no
 `ident_file`           | String  | Path of pg_ident.conf file              | `<default_os_conf_path>/pg_ident.conf`              | no
@@ -128,8 +128,8 @@ To setup your PostgreSQL configuration with a specific data directory. If you ha
 
 ```
 postgresql_server_conf 'My PostgreSQL Config' do
-  version '9.5'
-  data_directory '/data/postgresql/9.5/main'
+  version '9.6'
+  data_directory '/data/postgresql/9.6/main'
   notification :reload
 end
 ```
@@ -157,7 +157,7 @@ To install the `adminpack` extension:
 
 ```ruby
 # Add the contrib package in Ubuntu/Debian
-package 'postgresql-contrib-9.6'
+package 'postgresql-contrib-10'
 
 # Install adminpack extension
 postgresql_extension 'postgres adminpack' do
@@ -362,11 +362,11 @@ Example: cookbooks/my_postgresql/recipes/default.rb
 ```ruby
 postgresql_client_install 'Postgresql Client' do
   setup_repo false
-  version '9.5'
+  version '10'
 end
 
 postgresql_server_install 'Postgresql Server' do
-  version '9.5'
+  version '10'
   setup_repo false
   password 'P0sgresP4ssword'
 end
